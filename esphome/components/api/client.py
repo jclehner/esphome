@@ -18,7 +18,8 @@ with warnings.catch_warnings():
 import contextlib
 
 from esphome.const import CONF_KEY, CONF_PORT, __version__
-from esphome.core import CORE, EsphomeError
+from esphome.core import CORE
+from esphome.platformio_api import process_stacktrace
 from esphome.util import safe_print
 
 from . import CONF_ENCRYPTION
@@ -102,6 +103,7 @@ async def async_run_logs(
         noise_psk=noise_psk,
         addresses=addresses,  # Pass all addresses for automatic retry
     )
+    backtrace_state = False
 
     # Try platform-specific stacktrace handler first, fall back to generic
     platform_process_stacktrace = None
