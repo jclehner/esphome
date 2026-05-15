@@ -90,12 +90,10 @@ def storage_should_clean(old: StorageJSON | None, new: StorageJSON) -> bool:
     """Return True when the build tree must be wiped before reuse.
 
     Predicate is True when *old* is missing (first build),
-    ``src_version`` differs, ``build_path`` differs, the build
-    ``toolchain`` differs (e.g. switching between the PlatformIO and
-    native ESP-IDF toolchains, which produce incompatible build trees),
-    or a previously loaded integration was removed in *new*. Adding
-    integrations or changing unrelated fields (friendly name, esphome
-    version, etc.) does not trigger a clean.
+    ``src_version`` differs, ``build_path`` differs, or a previously
+    loaded integration was removed in *new*. Adding integrations or
+    changing unrelated fields (friendly name, esphome version, etc.)
+    does not trigger a clean.
 
     Used by esphome-device-builder (esphome/device-builder) to gate
     its remote-build artifact materialiser so a local → remote → local
